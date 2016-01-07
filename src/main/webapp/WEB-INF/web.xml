@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>Archetype Created Web Application</display-name>
+
+    <!--<resource-ref>-->
+        <!--<res-ref-name>jdbc/cg</res-ref-name>-->
+        <!--<res-type>javax.sql.DataSource</res-type>-->
+        <!--<res-auth>Container</res-auth>-->
+    <!--</resource-ref>-->
+
+    <!--<context-param>-->
+        <!--<param-name>spring.profiles.active</param-name>-->
+        <!--<param-value>production</param-value>-->
+    <!--</context-param>-->
+
+    <!-- servlet for test -->
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.yjh.servlets.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- session config -->
+    <session-config>
+        <session-timeout>30</session-timeout> <!-- default value of tomcat -->
+        <cookie-config>
+            <!--<name>JSESSIONID</name>-->
+            <!--<domain>example.com</domain>-->
+            <!--<path>/</path>-->
+            <comment>Keep you logged in.See our privacy policy for more information.</comment>
+            <http-only>true</http-only>
+            <secure>false</secure>
+            <!--<max-age>1800</max-age>-->
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+        <!--<tracking-mode>URL</tracking-mode>-->
+        <!--<tracking-mode>SSL</tracking-mode>-->
+    </session-config>
+
+    <!-- jsp config -->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspf</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <scripting-invalid>false</scripting-invalid>
+
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+            <default-content-type>text/html;charset=UTF-8</default-content-type>
+        </jsp-property-group>
+    </jsp-config>
+
+    <!--<distributable />-->
+
+    <!--<error-page>-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/WEB-INF/m/404.jsp</location>-->
+    <!--</error-page>-->
+
+    <distributable />
+    
+</web-app>
