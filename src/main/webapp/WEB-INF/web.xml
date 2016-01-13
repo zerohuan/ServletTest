@@ -50,7 +50,7 @@
             <url-pattern>*.jspf</url-pattern>
             <page-encoding>UTF-8</page-encoding>
             <scripting-invalid>false</scripting-invalid>
-
+            <include-prelude>/WEB-INF/head.jsp</include-prelude>
             <trim-directive-whitespaces>true</trim-directive-whitespaces>
             <default-content-type>text/html;charset=UTF-8</default-content-type>
         </jsp-property-group>
