@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * 异步servlet
+ * 异步servlet,实验学习一下
  * Created by yjh on 16-1-6.
  */
 @WebServlet(name = "Async2", urlPatterns = "/async2/*", asyncSupported = true)

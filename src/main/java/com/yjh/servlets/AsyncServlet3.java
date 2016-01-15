@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 实验学习一下
  * Created by yjh on 16-1-6.
  */
 @WebServlet(name = "Async3", urlPatterns = "/async3/*", asyncSupported = true)
