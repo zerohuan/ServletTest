@@ -1,5 +1,9 @@
 package com.yjh.servlets;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +16,13 @@ import java.io.PrintWriter;
  * Created by yjh on 16-1-6.
  */
 public class TestServlet extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger();
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        logger.debug(config.getServletName() + "init");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +34,7 @@ public class TestServlet extends HttpServlet {
 }
 
 // 请求和响应，与客户端进行交互的是servlet容器，容器将请求dispatch到对应的servlet（委托），取得response后返回到客户端；（通信基于HTTP等协议）
-// # Servlet：
+// # CookieBaseServlet：
 // ## Servlet的数量
 // servlet默认是线程不安全的，一个容器中只有每个servlet一个实例，但是如果实现了SingleThreadModule接口，容器将实现多个servlet实例
 // SingleThreadModule也能保证线程安全，它只能保证任意两个线程不会使用同一个Servlet实例（可能由一个对象池来维护），servlet 2.4已经将这个接口弃用了；
@@ -42,7 +53,7 @@ public class TestServlet extends HttpServlet {
 // -After；
 //
 // 异步处理：
-// Servlet 3.0后引入了异步处理请求的能力；异步处理中servlet的service在任务执行（另一个线程中）完成前可以可以不产生响应返回，任务处理完成后可以通过AsyncListener回调进行相应的处理；
+// CookieBaseServlet 3.0后引入了异步处理请求的能力；异步处理中servlet的service在任务执行（另一个线程中）完成前可以可以不产生响应返回，任务处理完成后可以通过AsyncListener回调进行相应的处理；
 // 关键方法：
 // 启用：让servlet支持异步支持:asyncSupported = true；
 // 启动：AsyncContext asyncContext = req.startAsyncContext();/startAsyncContext(req, resp);

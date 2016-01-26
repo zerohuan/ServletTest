@@ -9,7 +9,6 @@ import java.io.IOException;
 /**
  * Created by yjh on 16-1-14.
  */
-
 public class AsyncFilter1 implements Filter {
     private static final Logger logger = LogManager.getLogger();
     private String name;
@@ -32,6 +31,7 @@ public class AsyncFilter1 implements Filter {
         if (request.isAsyncSupported() && request.isAsyncStarted()) {
             AsyncContext asyncContext = request.getAsyncContext();
             logger.debug("asyncContext state: " + asyncContext.hasOriginalRequestAndResponse());
+//            response.getWriter().println("After request handle, LogFilter");
         } else {
             logger.debug("leaving " + this.name + ".doFilter()");
         }

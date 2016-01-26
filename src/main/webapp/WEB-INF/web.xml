@@ -5,6 +5,13 @@
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Archetype Created Web Application</display-name>
 
+    <locale-encoding-mapping-list>
+        <locale-encoding-mapping>
+            <locale>zh_CN</locale>
+            <encoding>UTF8</encoding>
+        </locale-encoding-mapping>
+    </locale-encoding-mapping-list>
+
     <!--<resource-ref>-->
     <!--<res-ref-name>jdbc/cg</res-ref-name>-->
     <!--<res-type>javax.sql.DataSource</res-type>-->
@@ -20,12 +27,16 @@
     <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>com.yjh.servlets.TestServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/test/*</url-pattern>
     </servlet-mapping>
-    
+
+    <listener>
+        <listener-class>com.yjh.listener.MServletContextListener</listener-class>
+    </listener>
     <listener>
         <listener-class>com.yjh.listener.SessionListener</listener-class>
     </listener>
@@ -48,6 +59,10 @@
     <filter-mapping>
         <filter-name>AsyncFilter1</filter-name>
         <servlet-name>asyncServlet4</servlet-name>
+        <url-pattern>/nextAsync</url-pattern>
+        <url-pattern>/async5</url-pattern>
+        <dispatcher>ASYNC</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 
     <filter>

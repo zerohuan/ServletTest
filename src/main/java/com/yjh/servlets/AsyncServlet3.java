@@ -79,7 +79,7 @@ public class AsyncServlet3 extends HttpServlet {
 //            } catch (InterruptedException e) {
 //                logger.error(e);
 //            }
-//            asyncContext.dispatch("/upload.jsp");
+//            asyncContext.dispatch("/login.jsp");
         });
         out.println("success");
     }

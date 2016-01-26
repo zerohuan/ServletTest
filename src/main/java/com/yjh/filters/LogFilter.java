@@ -28,7 +28,16 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         request.setCharacterEncoding("UTF8");
-        response.setContentType("text/html; charset=utf-8");
-        chain.doFilter(request, response);
+//        HttpServletResponse resp = (HttpServletResponse)response;
+//        HttpServletRequest req = (HttpServletRequest)request;
+//        String host = request.getServerName();
+//        if (host.startsWith("localhost")) {
+//            logger.debug(req.getRequestURL());
+//            resp.setStatus(301);
+//            resp.setHeader( "Location", "http://www.baidu.com/");
+//            resp.setHeader( "Connection", "close");
+//        } else
+            chain.doFilter(request, response);
+//        response.getWriter().println("After ");
     }
 }

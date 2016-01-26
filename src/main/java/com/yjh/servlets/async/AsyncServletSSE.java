@@ -19,13 +19,33 @@ import java.util.concurrent.TimeUnit;
  * 一个常用方法模型：耗时任务提交线程池异步执行
  * Created by yjh on 16-1-13.
  */
-@WebServlet(name = "asyncServlet4", urlPatterns = "/async4", loadOnStartup = 1, asyncSupported = true)
-public class AsyncServlet4 extends HttpServlet {
+@WebServlet(name = "asyncServletSSE", urlPatterns = "/asyncSSE", loadOnStartup = 1, asyncSupported = true)
+public class AsyncServletSSE extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/p/comet/comet.jsp").forward(req, resp);
+        AsyncContext asyncContext = req.startAsync();
+        asyncContext.setTimeout(0); //默认是Servlet的超时时间，默认30秒，这里设置为notimeout
+        asyncContext.addListener(new MonitorAsyncListener(logger));
+        BlockingQueue<String> queue = new LinkedBlockingQueue<>();
+        asyncContext.start(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    PrintWriter out = asyncContext.getResponse().getWriter();
+                    while (true) {
+                        String msg = queue.take();
+                        out.println(msg);
+                        out.flush();
+                    }
+                } catch (Exception e) {
+                    new RuntimeException(e);
+                }
+                asyncContext.complete(); //任务完成调用onComplete，通知，调用回调函数
+            }
+        });
+        new Thread(new DataHandler(queue)).start();
     }
 
     @Override

@@ -19,7 +19,7 @@ public class UploadServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/p/upload/upload.jsp").forward(req, resp);
+        req.getRequestDispatcher("/p/upload/login.jsp").forward(req, resp);
     }
 
     @Override
