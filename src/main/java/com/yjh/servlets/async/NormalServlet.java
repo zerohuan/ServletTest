@@ -29,6 +29,7 @@ public class NormalServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.getWriter().println(this.name + " enter");
         try {
             TimeUnit.SECONDS.sleep(5);
             //不能在不支持异步的Servlet中操作AsyncContext，返回后由容器调用complete
@@ -37,6 +38,7 @@ public class NormalServlet extends HttpServlet {
         } catch (InterruptedException e) {
             logger.error(e);
         }
+        resp.getWriter().println(this.name + " leaving");
         logger.debug(this.name + " service leaving");
     }
 

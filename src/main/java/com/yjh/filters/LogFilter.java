@@ -28,6 +28,7 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         request.setCharacterEncoding("UTF8");
+        response.setContentType("text/html; charset=UTF-8");
 //        HttpServletResponse resp = (HttpServletResponse)response;
 //        HttpServletRequest req = (HttpServletRequest)request;
 //        String host = request.getServerName();

@@ -67,6 +67,7 @@ public class ResponseServlet extends HttpServlet {
         //设置响应的locale
 //        resp.setLocale(first);
 //        resp.setContentType("text/html; charset=utf8");
+        resp.addHeader("Content-Type", "text/html; charset=utf8");
 //        resp.addHeader("Content-Type", "text/html; charset=utf8");
 //        resp.setCharacterEncoding("UTF8");
 

@@ -45,6 +45,8 @@ public class AsyncServlet5 extends HttpServlet {
         } else {
             asyncContext.dispatch("/normal"); //分派到不支持异步，会在返回容器后由容器调用complete方法
         }
+        resp.getWriter().println(this.name + " leaving");
+        resp.flushBuffer();
         logger.debug(this.name + " leaving"); //可以在分派返回容器之前返回
     }
 
